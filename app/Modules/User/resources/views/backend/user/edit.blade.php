@@ -42,8 +42,8 @@
                         <div class="role"></div>
                     </div>
                 </div>
+                <button type="submit" class="btn btn-primary float-right">Submit</button>
                 <button class="btn btn-warning" data-dismiss="modal"><i class="flaticon-cancel-12"></i>Discard</button>
-                <button type="submit" class="btn btn-primary float-left">Submit</button>
             </form>
         </div>
     </div>

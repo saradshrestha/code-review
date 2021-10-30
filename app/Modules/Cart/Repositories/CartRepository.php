@@ -8,15 +8,15 @@ class CartRepository implements CartInterface
 {
     public function index(){
         $products = DB::table('products')->get();
-        return view('Cart::backend.carts.index',compact ('products'));
+        return view('Cart::backend.cart.index',compact ('products'));
     }
 
     public function getAllCart(){
-        return view('Cart::backend.carts.getAllCarts');
+        return view('Cart::backend.cart.getAllCarts');
     }
 
     public function getCart (){
-        $view = view('Cart::backend.carts.cart')->render();
+        $view = view('Cart::backend.cart.cart')->render();
         return response()->json([
             'view' =>  $view
         ]);
@@ -85,7 +85,7 @@ class CartRepository implements CartInterface
                 unset($cart[$request->id]);
                 session()->put('cart', $cart);
             }
-            $view = view ('Cart::backend.carts.cart')->render();
+            $view = view ('Cart::backend.cart.cart')->render();
             return response()->json([
                 'message' => "Product Removed From Cart.",
                 'view' =>  $view

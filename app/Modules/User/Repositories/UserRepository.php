@@ -12,7 +12,7 @@ class UserRepository implements UserInterface
 {
     public function index(){
 
-        return view('User::backend.users.index',compact('users'));
+        return view('User::backend.user.index',compact('users'));
     }
 
     public function getUsers(){
@@ -21,14 +21,14 @@ class UserRepository implements UserInterface
                 ->whereNotIn('name',['admin'])
                 ->with('roles')
                 ->get();
-        $view = view('User::backend.users.getUsers',compact('users'))->render();
+        $view = view('User::backend.user.getUsers',compact('users'))->render();
         return response()->json([
             'view' =>  $view,
         ]);
     }
 
     public function create(){
-        return view('User::backend.users.create');
+        return view('User::backend.user.create');
     }
 
     public function store($request){
@@ -45,7 +45,7 @@ class UserRepository implements UserInterface
 
     public function edit($id){
         $user = User::where('id',$id)->first();
-        return view('User::backend.users.edit',compact('user'));
+        return view('User::backend.user.edit',compact('user'));
     }
 
     public function update($request, $id){
@@ -71,12 +71,12 @@ class UserRepository implements UserInterface
     }
 
     public function trashUser(){
-        return view('User::backend.users.trash');
+        return view('User::backend.user.trash');
     }
 
     public function getTrashUsers(){
         $trashUsers = User::onlyTrashed()->get();
-        $view = view('User::backend.users.getTrashUsers',compact('trashUsers'))->render();
+        $view = view('User::backend.user.getTrashUsers',compact('trashUsers'))->render();
         return response()->json([
              'view' => $view,
         ]);
@@ -108,7 +108,7 @@ class UserRepository implements UserInterface
 
     public function changePassword($id){
         $user = User::where('id',$id)->first();
-        return view('User::backend.users.changePassword',compact('user'));
+        return view('User::backend.user.changePassword',compact('user'));
     }
 
     public function passwordSubmit($request, $id){

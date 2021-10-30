@@ -22,8 +22,6 @@
 
         public function undoDelete($id);
 
-        public function trashCategory();
-
         public function getTrashCategories();
 
         public function permanentDelete($id);

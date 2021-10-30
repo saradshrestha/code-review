@@ -106,14 +106,6 @@ class CategoryController extends Controller
         }
     }
 
-    public function trashCategory(){
-        try {
-            return $this->category->trashCategory();
-        }catch (\Exception $e){
-              $this->response->responseBladeError($e->getMessage());
-        }
-    }
-
     public function getTrashCategories(){
         try {
             return $this->category->getTrashCategories();

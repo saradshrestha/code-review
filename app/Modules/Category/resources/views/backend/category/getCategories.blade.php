@@ -31,7 +31,7 @@
             @if($category->parent_id == 0)
                 <span class="badge badge-success"> Main Category </span>
             @else
-                <span class="badge badge-info"  title = "{{ $category->parent->title }}">
+                <span class="badge badge-info" >
                     Sub Category
                 </span>
             @endif

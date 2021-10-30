@@ -37,8 +37,8 @@
                         <div class="parent_id"></div>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-                <button class="btn btn-warning float-right" data-dismiss="modal">Discard</button>
+                <button type="submit" class="btn btn-primary float-right">Submit</button>
+                <button class="btn btn-warning " data-dismiss="modal">Discard</button>
             </form>
         </div>
     </div>

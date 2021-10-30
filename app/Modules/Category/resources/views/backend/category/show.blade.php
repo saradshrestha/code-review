@@ -8,8 +8,6 @@
         <div class="modal-body">
             <p class="modal-text">{{ $category->slug }}</p>
         </div>
-        <div class="modal-footer justify-content-between">
-            <a type="button" href="{{ route('backend.categories.edit',$category->id) }}" class="btn btn-primary">Edit</a>
-        </div>
+
     </div>
 </div>

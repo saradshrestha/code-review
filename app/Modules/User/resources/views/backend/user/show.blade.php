@@ -9,7 +9,7 @@
         </div>
         <div class="modal-footer justify-content-between">
             <p>Created By : {{ $category->user->name ?? 'Sarad'}}</p>
-            <button class="btn btn-warning float-right" data-dismiss="modal"><i class="flaticon-cancel-12"></i>Discard</button>
+
         </div>
     </div>
 </div>

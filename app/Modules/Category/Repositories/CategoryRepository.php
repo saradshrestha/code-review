@@ -9,12 +9,12 @@ use Illuminate\Support\Str;
 class CategoryRepository implements CategoryInterface
 {
     public function index(){
-        return view('Category::backend.categories.index',compact('categories'));
+        return view('Category::backend.category.index');
     }
 
     public function getCategories(){
         $categories = Category::latest()->get();
-        $view = view('Category::backend.categories.getCategories',compact('categories'))->render();
+        $view = view('Category::backend.category.getCategories',compact('categories'))->render();
         return response()->json([
             'view' =>  $view
         ]);
@@ -22,7 +22,7 @@ class CategoryRepository implements CategoryInterface
 
     public function create(){
         $categories = Category::where('parent_id','0')->get();
-        return view('Category::backend.categories.create',compact('categories'));
+        return view('Category::backend.category.create',compact('categories'));
     }
 
     public function store($request){
@@ -37,13 +37,13 @@ class CategoryRepository implements CategoryInterface
 
     public function show($id){
         $category = Category::where('id',$id)->first();
-        return view ('Category::backend.categories.show',compact('category'));
+        return view ('Category::backend.category.show',compact('category'));
     }
 
     public function edit($id){
         $category = Category::where('id',$id)->first();
         $categories = Category::where('parent_id','0')->get();
-        return view('Category::backend.categories.edit',compact('category','categories'));
+        return view('Category::backend.category.edit',compact('category','categories'));
     }
 
     public function update($request, $id){
@@ -69,13 +69,10 @@ class CategoryRepository implements CategoryInterface
          return true;
     }
 
-    public function trashCategory(){
-        return view('Category::backend.categories.trash');
-    }
 
     public function getTrashCategories(){
         $trashCategories = Category::onlyTrashed()->get();
-        $view = view('Category::backend.categories.getTrashCategories',compact('trashCategories'))->render();
+        $view = view('Category::backend.category.getTrashCategories',compact('trashCategories'))->render();
         return response()->json([
              'view' =>  $view
         ]);
