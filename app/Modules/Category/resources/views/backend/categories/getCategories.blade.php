@@ -31,7 +31,7 @@
             @if($category->parent_id == 0)
                 <span class="badge badge-success"> Main Category </span>
             @else
-                <span class="badge badge-info  bs-popover mb-3" data-container="body" data-content="{{ $category->parent->title }}">
+                <span class="badge badge-info"  title = "{{ $category->parent->title }}">
                     Sub Category
                 </span>
             @endif

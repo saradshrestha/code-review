@@ -15,5 +15,4 @@
         public function update($request);
 
         public function destroy($request);
-
     }

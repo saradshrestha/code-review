@@ -14,7 +14,7 @@
 <link href="{{ asset('backends/assets/css/components/custom-modal.css') }}" rel="stylesheet" type="text/css" />
 <link href="{{ asset('backends/plugins/animate/animate.css') }}" rel="stylesheet" type="text/css" />
 <link href="{{ asset ('backends/plugins/bootstrap-select/bootstrap-select.min.css') }}" rel="stylesheet" type="text/css" >
-
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 {{-- Login --}}
 <link href="{{ asset ('backends/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
 <link href="{{ asset ('backends/assets/css/plugins.css') }}" rel="stylesheet" type="text/css" />

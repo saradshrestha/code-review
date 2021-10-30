@@ -113,10 +113,8 @@ class PostRepository implements PostInterface
         $post->save();
         $success = true;
         if($post->post_status === 1){
-            $post_status_1 =  $post->post_status;
             $message = "The Post Is Active Now.";
         }else{
-            $post_status_1 =  $post->post_status;
             $message = "The Post Is Inactive Now.";
         }
         return response()->json([

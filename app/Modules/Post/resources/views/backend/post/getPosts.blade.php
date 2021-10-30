@@ -15,9 +15,6 @@
         <td>{{ $post->post_slug }}</td>
         <td>
             <label class="switch s-icons s-outline s-outline-success mr-2">
-
-                <input type="checkbox" class="sw-status" data-id="{{ $post->id }}" {{ $post->post_status == 1 ? 'checked' : '' }}>
-                    <span class="slider round"></span>
                 @hasanyrole('admin|editor')
                     <input type="checkbox" class="sw-status" data-id="{{ $post->id }}" {{ $post->post_status == 1 ? 'checked' : '' }}>
                     <span class="slider round"></span>
@@ -32,8 +29,6 @@
         </td>
         <td>
             <label class="switch s-icons s-outline s-outline-success mr-2">
-                <input type="checkbox" class="sw-published" data-id="{{ $post->id }}" {{ $post->is_published == 1 ? 'checked' : '' }}>
-                    <span class="slider round"></span>
                 @hasanyrole('admin|editor')
                     <input type="checkbox" class="sw-published" data-id="{{ $post->id }}" {{ $post->is_published == 1 ? 'checked' : '' }}>
                     <span class="slider round"></span>
