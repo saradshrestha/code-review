@@ -12,15 +12,15 @@ use Illuminate\Http\Request;
 class CategoryController extends Controller
 {
     public $response;
-    public $task;
+    public $category;
 
-    public function __construct(ResponseService $response, CategoryInterface $task ){
+    public function __construct(ResponseService $response, CategoryInterface $category ){
         $this->response = $response;
-        $this->task = $task;
+        $this->category = $category;
     }
     public function index(){
         try{
-            return $this->task->index();
+            return $this->category->index();
         }catch (\Exception $e){
               $this->response->responseBladeError($e->getMessage());
         }
@@ -28,7 +28,7 @@ class CategoryController extends Controller
 
     public function getCategories(){
         try{
-            return $this->task->getCategories();
+            return $this->category->getCategories();
         }catch (\Exception $e){
               $this->response->responseBladeError($e->getMessage());
         }
@@ -36,7 +36,7 @@ class CategoryController extends Controller
 
     public function show($id){
         try{
-            return $this->task->show($id);
+            return $this->category->show($id);
         }catch (\Exception $e){
              $this->response->responseBladeError($e->getMessage());
         }
@@ -44,7 +44,7 @@ class CategoryController extends Controller
 
     public function create(){
         try {
-            return $this->task->create();
+            return $this->category->create();
         }catch (\Exception $e){
               $this->response->responseBladeError($e->getMessage());
         }
@@ -52,7 +52,7 @@ class CategoryController extends Controller
 
     public function store(CategoryStoreRequest $request){
         try {
-            $categoryStore = $this->task->store($request);
+            $categoryStore = $this->category->store($request);
             if ($categoryStore == true){
                 return  $this->response->responseSuccessMsg("Category Created Successfully.");
             }
@@ -64,7 +64,7 @@ class CategoryController extends Controller
 
     public function edit($id){
         try{
-            return $this->task->edit($id);
+            return $this->category->edit($id);
         }catch (\Exception $e){
              $this->response->responseBladeError($e->getMessage());
         }
@@ -72,7 +72,7 @@ class CategoryController extends Controller
 
     public function update(CategoryUpdateRequest $request, $id){
         try {
-            $categoryUpdate = $this->task->update($request, $id);
+            $categoryUpdate = $this->category->update($request, $id);
             if( $categoryUpdate == true){
                 return  $this->response->responseSuccessMsg("Category Updated Successfully.");
             }
@@ -84,7 +84,7 @@ class CategoryController extends Controller
 
     public function destroy($id){
         try{
-            $categoryDelete = $this->task->destroy($id);
+            $categoryDelete = $this->category->destroy($id);
             if( $categoryDelete == true){
                 return  $this->response->responseSuccessMsg("Category Deleted Successfully.");
             }
@@ -96,7 +96,7 @@ class CategoryController extends Controller
 
     public function undoDelete($id){
         try {
-            $categoryRestore = $this->task->undoDelete($id);
+            $categoryRestore = $this->category->undoDelete($id);
             if( $categoryRestore == true){
                 return  $this->response->responseSuccessMsg("Category Restored Successfully.");
             }
@@ -108,7 +108,7 @@ class CategoryController extends Controller
 
     public function trashCategory(){
         try {
-            return $this->task->trashCategory();
+            return $this->category->trashCategory();
         }catch (\Exception $e){
               $this->response->responseBladeError($e->getMessage());
         }
@@ -116,7 +116,7 @@ class CategoryController extends Controller
 
     public function getTrashCategories(){
         try {
-            return $this->task->getTrashCategories();
+            return $this->category->getTrashCategories();
         }catch (\Exception $e){
               $this->response->responseBladeError($e->getMessage());
         }
@@ -124,7 +124,7 @@ class CategoryController extends Controller
 
     public function permanentDelete($id){
         try {
-            $categoryPermaDelete = $this->task->permanentDelete($id);
+            $categoryPermaDelete = $this->category->permanentDelete($id);
             if( $categoryPermaDelete == true){
                 return  $this->response->responseSuccessMsg("Category Deleted Permanently.");
             }
@@ -136,7 +136,7 @@ class CategoryController extends Controller
 
     public function statusUpdate(Request $request,$id){
         try {
-            return $this->task->statusUpdate($request,$id);
+            return $this->category->statusUpdate($request,$id);
         }catch (\Exception $e){
               $this->response->responseBladeError($e->getMessage());
         }

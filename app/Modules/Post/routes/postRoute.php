@@ -23,7 +23,6 @@ Route::group([
         Route::get('/permanent-delete-posts/{id}','PostController@permanentDelete')->name('permaDelete');
         Route::post('/post-status-update/{id}','PostController@statusUpdate')->name('statusUpdate');
         Route::post('/post-publish-update/{id}','PostController@publishUpdate')->name('publishUpdate');
-
         Route::post('/filter-by-date','PostController@filterByDate')->name('filterByDate');
     });
 });

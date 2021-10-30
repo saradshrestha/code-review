@@ -1,13 +1,7 @@
 @extends('backends.layouts.master')
 @push('backend-stylesheet')
-    <link rel="stylesheet" type="text/css" href="{{ asset('backends/plugins/table/datatable/datatables.css')}} ">
-    <link rel="stylesheet" type="text/css" href="{{ asset('backends/plugins/table/datatable/dt-global_style.css') }}">
-    <link href="{{ asset('backends/assets/css/scrollspyNav.css') }}" rel="stylesheet" type="text/css" />
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-    <link href="{{ asset('backends/plugins/flatpickr/flatpickr.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('backends/plugins/flatpickr/custom-flatpickr.css') }}" rel="stylesheet" type="text/css">
-
-
+<link href="{{ asset('backends/plugins/flatpickr/flatpickr.css') }}" rel="stylesheet" type="text/css">
+<link href="{{ asset('backends/plugins/flatpickr/custom-flatpickr.css') }}" rel="stylesheet" type="text/css">
 @endpush
 @section('content')
 <div class="page-header">

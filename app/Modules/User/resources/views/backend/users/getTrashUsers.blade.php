@@ -11,12 +11,12 @@
     <tbody>
     @foreach($trashUsers as $user)
     <tr>
-        <td>{{$user->name}}</td>
-        <td>{{$user->email}}</td>
-        <td>{{ucfirst ($user->getRoles) ?? 'No Roles Provided'}}</td>
+        <td>{{ $user->name }}</td>
+        <td>{{ $user->email }}</td>
+        <td>{{ ucfirst ($user->getRoles) ?? 'No Roles Provided' }}</td>
         <td>
-            <a type="button" data-id ="{{$user->id}}" class="btn btn-primary undoDelete" style="display: inline-block">Undo Delete</a>
-            <a type="button" data-id="{{$user->id}}" class="btn btn-danger permaDeleteUser" style="display: inline-block">Delete Permanently</a>
+            <a type="button" data-id ="{{ $user->id }}" class="btn btn-primary undoDelete" style="display: inline-block">Undo Delete</a>
+            <a type="button" data-id="{{ $user->id }}" class="btn btn-danger permaDeleteUser" style="display: inline-block">Delete Permanently</a>
         </td>
 
     @endforeach

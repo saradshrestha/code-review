@@ -11,40 +11,39 @@
     <tbody>
     @foreach($categories as $category)
     <tr>
-        <td>{{$category->title}}</td>
-        <td>{{$category->slug}}</td>
+        <td>{{ $category->title }}</td>
+        <td>{{ $category->slug }}</td>
         <td>
             <label class="switch s-icons s-outline s-outline-success mr-2">
-                {{-- @hasanyrole('admin|editor') --}}
-                    <input type="checkbox" class="sw-status" data-id="{{$category->id}}" {{ $category->status == 1 ? 'checked' : '' }}>
+                @hasanyrole('admin|editor')
+                    <input type="checkbox" class="sw-status" data-id="{{ $category->id }}" {{ $category->status == 1 ? 'checked' : '' }}>
                     <span class="slider round"></span>
-                {{-- @else
+                @else
                 @if( $category->status == 1)
                     <span class="badge outline-badge-primary"> Active  </span>
                 @else
                     <span class="badge outline-badge-danger"> Inactive </span>
                 @endif
-                @endhasanyrole --}}
+                @endhasanyrole
             </label>
         </td>
         <td>
             @if($category->parent_id == 0)
                 <span class="badge badge-success"> Main Category </span>
             @else
-                {{-- <span class="badge badge-primary"> Sub Category </span> --}}
                 <span class="badge badge-info  bs-popover mb-3" data-container="body" data-content="{{ $category->parent->title }}">
                     Sub Category
                 </span>
             @endif
         </td>
     <td>
-        <button data-id ="{{$category->id}}" class="btn btn-secondary showCategory" style="display: inline-block" data-target="#showCategory{{$category->id}}" data-toggle="modal">
+        <button data-id ="{{ $category->id }}" class="btn btn-secondary showCategory" style="display: inline-block" data-target="#showCategory{{ $category->id }}" data-toggle="modal">
             Show
         </button>
-        <button data-id="{{ $category->id}}" class="btn btn-primary editCategory" style="display: inline-block" data-target="#editCategory{{$category->id}}">
+        <button data-id="{{ $category->id }}" class="btn btn-primary editCategory" style="display: inline-block" data-target="#editCategory{{ $category->id }}" data-toggle="modal">
             Edit
         </button>
-        <button data-id="{{$category->id}}" class="btn btn-danger deleteCategory" style="display: inline-block">
+        <button data-id="{{ $category->id }}" class="btn btn-danger deleteCategory" style="display: inline-block">
             Delete
         </button>
     </td>

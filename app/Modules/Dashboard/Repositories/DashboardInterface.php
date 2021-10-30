@@ -8,5 +8,4 @@
         public function passwordView($id);
         public function checkPassword($request);
         public function userPasswordSubmit($request);
-
     }

@@ -1,8 +1,6 @@
 @extends('backends.layouts.master')
 @push('backend-stylesheet')
-<link rel="stylesheet" type="text/css" href="{{ asset('backends/plugins/table/datatable/datatables.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('backends/plugins/table/datatable/dt-global_style.css') }}">
-<link href="{{ asset('backends/assets/css/scrollspyNav.css') }}" rel="stylesheet" type="text/css" />
+
 @endpush
 @section('content')
 <div class="page-header">
@@ -20,7 +18,7 @@
                 <div class="widget-content widget-content-area br-6">
                     <h5 style="display: inline; margin-left:14px;">All Users</h5>
                     <a class="btn btn-primary float-right mr-3" id="createUser" style="margin-bottom: 20px">Create User</a>
-                    <a href="{{route('backend.users.trash')}}" class="btn btn-secondary float-right mr-2" style="margin-bottom: 20px">Trashed User</a>
+                    <a href="{{ route('backend.users.trash') }}" class="btn btn-secondary float-right mr-2" style="margin-bottom: 20px">Trashed User</a>
                     <div class="table-responsive mb-4 mt-4" id="getUsers">
 
                     </div>
@@ -47,14 +45,14 @@
 
 @push('backend-scripts')
     <script src="{{ asset('backends/assets/js/custom.js') }}"></script>
-    <script src="{{ asset('backends/plugins/table/datatable/datatables.js') }}"></script>
+
 
 {{-- Change Password Model  --}}
 <script>
     $(document).on('click','.changePassword',function(e){
         e.preventDefault();
         var id = $(this).attr('data-id');
-        var viewUrl = "{{route('backend.users.changePassword',':id')}}";
+        var viewUrl = "{{ route('backend.users.changePassword',':id') }}";
         viewUrl = viewUrl.replace(":id",id);
         $.ajax({
             url: viewUrl,

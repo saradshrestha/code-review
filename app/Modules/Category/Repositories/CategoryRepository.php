@@ -93,7 +93,7 @@ class CategoryRepository implements CategoryInterface
         $category->status = $request->status;
         $category->save();
         $success = true;
-        if ( $category->status == 1)
+        if ($category->status == 1)
         $message = "The Category Is Active Now.";
         else
          $message = "The Category Is Inactive Now.";

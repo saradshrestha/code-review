@@ -9,7 +9,7 @@
                 <div class="form-row mb-12">
                     <div class="form-group col-md-12">
                         <label for="title">Category Title</label>
-                        <input type="text" class="form-control" id="title" placeholder="Category Title" name="title" value="{{old ('title') }}">
+                        <input type="text" class="form-control" id="title" placeholder="Category Title" name="title" value="{{ old('title') }}">
                         <div class="title"></div>
                     </div>
                 </div>
@@ -31,7 +31,7 @@
                         <select class="placeholder js-states form-control" name="parent_id">
                             <option value="0" selected>Set as Main Category</option>
                             @foreach($categories as $category )
-                                <option value="{{$category->id}}" name="parent_id">{{$category->title}}</option>
+                                <option value="{{ $category->id }}" name="parent_id">{{ $category->title }}</option>
                             @endforeach
                         </select>
                         <div class="parent_id"></div>

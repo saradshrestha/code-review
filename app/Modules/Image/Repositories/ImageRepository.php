@@ -14,7 +14,6 @@ use Post\Models\Post;
 class ImageRepository implements ImageInterface
 {
     public function imagesStore($imageNames, $id){
-        //dd($imageNames);
         $year = Carbon::now()->year;
         $month = Carbon::now()->month;
         $imagePath ='upload/'.$year.'/'.$month.'/';
@@ -51,5 +50,4 @@ class ImageRepository implements ImageInterface
                 }
         }
     }
-
 }

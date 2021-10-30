@@ -18,7 +18,7 @@
             <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
                 <div class="widget-content widget-content-area br-6">
                     <h5 style="display: inline; margin-left:14px;">All Trashed Users</h5>
-                    <a href="{{route('backend.users.index')}}" class="btn btn-secondary float-right mr-2" style="margin-bottom: 20px">View Users</a>
+                    <a href="{{ route('backend.users.index') }}" class="btn btn-secondary float-right mr-2" style="margin-bottom: 20px">View Users</a>
                     <div class="table-responsive mb-4 mt-4 " id="getTrashUsers">
 
                     </div>

@@ -11,16 +11,15 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    public $response;
-    private $repo;
+    public $response, $post;
 
-    public function __construct( ResponseService $response, PostInterface $repo ){
+    public function __construct( ResponseService $response, PostInterface $post ){
         $this->response = $response;
-        $this->repo = $repo;
+        $this->post = $post;
     }
     public function index(){
         try{
-            return $this->repo->index();
+            return $this->post->index();
         }catch (\Exception $e){
             return $this->response->responseBladeError($e->getMessage());
         }
@@ -28,7 +27,7 @@ class PostController extends Controller
 
     public function getPosts(){
         try{
-            return $this->repo->getPosts();
+            return $this->post->getPosts();
         }catch (\Exception $e){
             return $this->response->responseBladeError($e->getMessage());
         }
@@ -36,7 +35,7 @@ class PostController extends Controller
 
     public function show($id){
         try{
-            return $this->repo->show($id);
+            return $this->post->show($id);
         }catch (\Exception $e){
             return $this->response->responseBladeError($e->getMessage());
         }
@@ -44,7 +43,7 @@ class PostController extends Controller
 
     public function create(){
         try {
-            return $this->repo->create();
+            return $this->post->create();
         }catch (\Exception $e){
             return $this->response->responseBladeError($e->getMessage());
         }
@@ -52,9 +51,8 @@ class PostController extends Controller
     }
 
     public function store(PostStoreRequest $request){
-        // dd( $request->all());
         try {
-            $postStore =  $this->repo->store($request);
+            $postStore =  $this->post->store($request);
             if ($postStore === true){
                 return $this->response->responseSuccessMsg('Successfully Created');
             }
@@ -67,16 +65,15 @@ class PostController extends Controller
 
     public function edit($id){
         try{
-            return $this->repo->edit($id);
+            return $this->post->edit($id);
         }catch (\Exception $e){
             return $this->response->responseBladeError($e->getMessage());
         }
     }
 
     public function update(PostUpdateRequest $request, $id){
-        //dd( $request->all());
         try {
-            $postUpdate = $this->repo->update($request,$id);
+            $postUpdate = $this->post->update($request,$id);
             if ($postUpdate === true){
                 return $this->response->responseSuccessMsg('Successfully Updated');
             }
@@ -89,7 +86,7 @@ class PostController extends Controller
 
     public function destroy($id){
         try{
-            $postDelete = $this->repo->destroy($id);
+            $postDelete = $this->post->destroy($id);
             if( $postDelete === true){
                 return $this->response->responseSuccessMsg("Post Deleted Successfully.");
             }
@@ -100,22 +97,12 @@ class PostController extends Controller
     }
 
     public function undoDelete($id){
-        try {
-             $undoDelete = $this->repo->undoDelete($id);
-             {
-                if( $undoDelete === true){
-                    return $this->response->responseSuccessMsg('Post Restored Successfully.');
-                }
-                return $this->response->responseError("Unable To Restore The Post");
-             }
-        }catch (\Exception $e){
-            return $this->response->responseBladeError($e->getMessage());
-        }
-    }
-
-    public function trashPost(){
         try{
-            return $this->repo->trashPost();
+            $undoDelete = $this->post->undoDelete($id);
+            if($undoDelete === true){
+                return $this->response->responseSuccessMsg('Post Restored Successfully.');
+            }
+            return $this->response->responseError("Unable To Restore The Post");
         }catch (\Exception $e){
             return $this->response->responseBladeError($e->getMessage());
         }
@@ -123,7 +110,7 @@ class PostController extends Controller
 
     public function getTrashPosts(){
         try {
-            return $this->repo->getTrashPosts();
+            return $this->post->getTrashPosts();
         }catch (\Exception $e){
             return $this->response->responseBladeError($e->getMessage());
         }
@@ -131,7 +118,7 @@ class PostController extends Controller
 
     public function permanentDelete($id){
         try {
-            $permaDelete = $this->repo->permanentDelete($id);
+            $permaDelete = $this->post->permanentDelete($id);
             if($permaDelete === true){
                 return $this->response->responseSuccessMsg('Post Deleted Permanently.');
             }
@@ -143,7 +130,7 @@ class PostController extends Controller
 
     public function statusUpdate(Request $request, $id){
         try {
-            return $this->repo->statusUpdate($request, $id);
+            return $this->post->statusUpdate($request, $id);
         }catch (\Exception $e){
             return $this->response->responseBladeError($e->getMessage());
         }
@@ -151,7 +138,7 @@ class PostController extends Controller
 
     public function publishUpdate(Request $request, $id){
         try {
-            return $this->repo->publishUpdate($request, $id);
+            return $this->post->publishUpdate($request, $id);
         }catch (\Exception $e){
             return $this->response->responseBladeError($e->getMessage());
         }
@@ -159,7 +146,7 @@ class PostController extends Controller
 
     public function filterByDate( Request $request){
         try{
-            return $this->repo->filterByDate($request);
+            return $this->post->filterByDate($request);
         }catch (\Exception  $e){
             return $this->response->responseBladeError($e->getMessage());
         }

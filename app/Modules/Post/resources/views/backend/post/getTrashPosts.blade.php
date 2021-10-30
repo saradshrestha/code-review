@@ -3,16 +3,14 @@
     <tr>
         <th>Post Title</th>
         <th>Post Slug</th>
-        <th>Created By</th>
         <th>Action</th>
     </tr>
     </thead>
     <tbody>
     @foreach($trashPosts as $post)
     <tr>
-        <td>{{$post->post_title}}</td>
-        <td>{{$post->post_slug}}</td>
-        <td>Sarads</td>
+        <td>{{ $post->post_title }}</td>
+        <td>{{ $post->post_slug }}</td>
         <td>
             <a type="button" class="btn btn-primary undoDelete" data-id="{{ $post->id }}" style="display: inline-block">Restore</a>
             <a type="button" data-id="{{ $post->id }}" class="btn btn-danger permaDeletePost" style="display: inline-block">Delete Permanently</a>

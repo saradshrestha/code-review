@@ -22,7 +22,7 @@ class ImageServiceProvider extends ServiceProvider
         config ([
             'imageRoute' => File::getRequire(loadConfig('route.php', $moduleName)),
         ]);
-        $this->loadRoutesFrom(loadRoutes('admin.php', $moduleName));
+        $this->loadRoutesFrom(loadRoutes('imageRoute.php', $moduleName));
         $this->loadMigrationsFrom(loadMigrations ( $moduleName));
         $this->loadViewsFrom(loadViews( $moduleName), $moduleName);
     }

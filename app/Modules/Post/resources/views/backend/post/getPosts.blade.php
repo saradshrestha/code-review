@@ -5,7 +5,7 @@
         <th>Post Slug</th>
         <th>Status</th>
         <th>Published</th>
-        <th>Action</th>
+        <th width=80px>Action</th>
     </tr>
     </thead>
     <tbody>
@@ -18,8 +18,8 @@
 
                 <input type="checkbox" class="sw-status" data-id="{{ $post->id }}" {{ $post->post_status == 1 ? 'checked' : '' }}>
                     <span class="slider round"></span>
-                {{-- @hasanyrole('admin|editor')
-                    <input type="checkbox" class="sw-status" data-id="{{$post->id}}" {{ $post->post_status == 1 ? 'checked' : '' }}>
+                @hasanyrole('admin|editor')
+                    <input type="checkbox" class="sw-status" data-id="{{ $post->id }}" {{ $post->post_status == 1 ? 'checked' : '' }}>
                     <span class="slider round"></span>
                 @else
                     @if( $post->post_status == 1)
@@ -27,15 +27,15 @@
                     @else
                         <span class="badge outline-badge-danger"> Inactive </span>
                     @endif
-                @endhasanyrole --}}
+                @endhasanyrole
             </label>
         </td>
         <td>
             <label class="switch s-icons s-outline s-outline-success mr-2">
                 <input type="checkbox" class="sw-published" data-id="{{ $post->id }}" {{ $post->is_published == 1 ? 'checked' : '' }}>
                     <span class="slider round"></span>
-                {{-- @hasanyrole('admin|editor')
-                    <input type="checkbox" class="sw-published" data-id="{{$post->id}}" {{ $post->is_published == 1 ? 'checked' : '' }}>
+                @hasanyrole('admin|editor')
+                    <input type="checkbox" class="sw-published" data-id="{{ $post->id }}" {{ $post->is_published == 1 ? 'checked' : '' }}>
                     <span class="slider round"></span>
                 @else
                     @if( $post->post_status == 1)
@@ -43,17 +43,17 @@
                     @else
                         <span class="badge outline-badge-danger"> Not Published </span>
                     @endif
-                @endhasanyrole --}}
+                @endhasanyrole
             </label>
         </td>
         <td>
-            <a type="button" data-id ="{{$post->id}}" class="btn btn-secondary showPost" style="display: inline-block" data-target="#showPost{{$post->id}}" data-toggle="modal">
+            <a type="button" data-id ="{{ $post->id }}" class="btn btn-secondary showPost" style="display: inline-block" data-target="#showPost{{ $post->id }}" data-toggle="modal">
                 Show
             </a>
-            <a type="button"  data-id ="{{$post->id}}" class="btn btn-primary editPost" style="display: inline-block" data-target="#editPost{{$post->id}}" data-toggle="modal">
+            <a type="button"  data-id ="{{ $post->id }}" class="btn btn-primary editPost" style="display: inline-block" data-target="#editPost{{ $post->id }}" data-toggle="modal">
                 Edit
             </a>
-            <a type="button" data-id="{{$post->id}}" class="btn btn-danger deletePost" style="display: inline-block">
+            <a type="button" data-id="{{ $post->id }}" class="btn btn-danger deletePost" style="display: inline-block">
                 Delete
             </a>
         </td>
@@ -79,3 +79,6 @@
         "pageLength": 7
     });
 </script>
+
+
+

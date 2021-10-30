@@ -1,11 +1,11 @@
 @extends('backends.layouts.master')
 @push('backend-stylesheet')
-    <link href="{{asset('backends/assets/css/components/custom-modal.css')}}" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="{{asset('backends/plugins/table/datatable/datatables.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('backends/plugins/table/datatable/dt-global_style.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('backends/plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css')}}">
-    <link href="{{asset('backends/assets/css/scrollspyNav.css')}}" rel="stylesheet" type="text/css" />
-    <link href="{{asset('backends/plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('backends/assets/css/components/custom-modal.css') }}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('backends/plugins/table/datatable/datatables.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('backends/plugins/table/datatable/dt-global_style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('backends/plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css') }}">
+    <link href="{{ asset('backends/assets/css/scrollspyNav.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('backends/plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css')}}" rel="stylesheet" type="text/css">
 @endpush
 @section('content')
 <div class="page-header">
@@ -23,7 +23,7 @@
             <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
                 <div class="widget-content widget-content-area br-6">
                     <div class="col-4">
-                        <a href="{{route('backend.carts.index')}}" class="btn btn-secondary">Back To Products</a>
+                        <a href="{{ route('backend.carts.index') }}" class="btn btn-secondary">Back To Products</a>
                     </div>
                     <div class="table-responsive mb-4 mt-4" id="cart">
 

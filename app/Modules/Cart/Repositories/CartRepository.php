@@ -16,7 +16,7 @@ class CartRepository implements CartInterface
     }
 
     public function getCart (){
-        $view = view ('Cart::backend.carts.cart')->render();
+        $view = view('Cart::backend.carts.cart')->render();
         return response()->json([
             'view' =>  $view
         ]);

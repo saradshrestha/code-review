@@ -10,11 +10,11 @@
     <tbody>
     @foreach($trashCategories as $category)
     <tr>
-        <td>{{$category->title}}</td>
-        <td>{{$category->slug}}</td>
-        <td>{{$category->user->name ?? 'sarad'}}</td>
+        <td>{{ $category->title }}</td>
+        <td>{{ $category->slug }}</td>
+        <td>{{ $category->user->name }}</td>
         <td>
-            <a type="button" data-id ="{{$category->id}}" class="btn btn-primary undoDelete" style="display: inline-block">Undo Delete</a>
+            <a type="button" data-id ="{{ $category->id }}" class="btn btn-primary undoDelete" style="display: inline-block">Undo Delete</a>
             <a type="button" data-id="{{ $category->id }}" class="btn btn-danger permaDeleteCategory" style="display: inline-block">Delete Permanently</a>
         </td>
     @endforeach

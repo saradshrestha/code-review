@@ -1,11 +1,11 @@
 @extends('backends.layouts.master')
 @push('backend-stylesheet')
     <!-- BEGIN PAGE LEVEL STYLES -->
-    <link href="{{ asset('backends/assets/css/components/custom-modal.css')}}" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="{{asset('backends/plugins/table/datatable/datatables.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('backends/plugins/table/datatable/dt-global_style.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('backends/plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css')}}">
-    <link href="{{asset('backends/assets/css/scrollspyNav.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('backends/assets/css/components/custom-modal.css') }}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('backends/plugins/table/datatable/datatables.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('backends/plugins/table/datatable/dt-global_style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('backends/plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css') }}">
+    <link href="{{ asset('backends/assets/css/scrollspyNav.css') }}" rel="stylesheet" type="text/css" />
 @endpush
 @section('content')
 <div class="page-header">
@@ -35,14 +35,11 @@
                             <tbody>
                             @foreach($products as $product)
                             <tr>
-                                <td>{{$product->id}}</td>
-                                <td>{{$product->product_name}}</td>
-                                <td>{{$product->product_price}}</td>
+                                <td>{ {$product->id }}</td>
+                                <td>{{ $product->product_name }}</td>
+                                <td>{{ $product->product_price }}</td>
                                 <td>
-                                    {{-- <a type="button" href="{{route('backend.carts.store', $product->id)}}"class="btn btn-primary addToCart" style="display: inline-block">
-                                        Add To Cart
-                                    </a> --}}
-                                    <a type="button" data-id="{{$product->id}}" class="btn btn-primary addToCart" style="display: inline-block">
+                                    <a type="button" data-id="{{ $product->id }}" class="btn btn-primary addToCart" style="display: inline-block">
                                         Add To Cart
                                     </a>
                                 </td>
@@ -61,8 +58,8 @@
 @endsection
 @push('backend-scripts')
 
-    <script src="{{asset('backends/assets/js/custom.js')}}"></script>
-    <script src="{{asset('backends/plugins/table/datatable/datatables.js')}}"></script>
+    <script src="{{ asset('backends/assets/js/custom.js') }}"></script>
+    <script src="{{ asset('backends/plugins/table/datatable/datatables.js') }}"></script>
     <script>
         $('#zero-config').DataTable({
             "oLanguage": {
@@ -79,24 +76,18 @@
     </script>
 
     <script>
-        $(document).ready(function ()
-        {
-            $('.addToCart').on('click',function ()
-            {
+            $(document).on('click','.addToCart',function(){
                 var id = $(this).attr('data-id');
                 var addUrl = "{{route ('backend.carts.store')}}";
-                $.ajax(
-                {
+                $.ajax({
                     method: "Post",
                     data:{
                         _token: '{{ csrf_token() }}',
                         id: id,
                         },
                     url: addUrl,
-                    success: function(response)
-                    {
-                        if (response.success === true)
-                        {
+                    success: function(response){
+                        if (response.success === true){
                             const toast = swal.mixin({
                                 toast: true,
                                 position: 'top-end',
@@ -109,22 +100,10 @@
                                 title: response.message,
                                 padding: '1em',
                             });
-                        }
-                        else
-                        {
-                            const toast = swal.mixin({
-                            toast: true,
-                            position: 'top-end',
-                            showConfirmButton: false,
-                            timer: 2000,
-                            padding: '1em'
-                            });
-                            toast({
-                                type: 'error',
-                                title: "Opps!!!. Something Went Wrong",
-                                padding: '1em',
-                            });
-                        }
+                        },
+                    error: function(error) {
+                        alert ('Error. Something Went Wrong');
+                      }
                     }
                 });
             });

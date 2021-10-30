@@ -21,7 +21,7 @@
 <link href="{{ asset ('backends/assets/css/authentication/form-2.css') }}" rel="stylesheet" type="text/css" />
 
 {{-- table --}}
-<link href="{{ asset ('backends/plugins/table/datatable/datatables.css') }}"rel="stylesheet" type="text/css"/>
+<link href="{{ asset ('backends/plugins/table/datatable/datatables.css') }}" rel="stylesheet" type="text/css"/>
 <link href="{{ asset ('backends/plugins/table/datatable/dt-global_style.css') }}" rel="stylesheet" type="text/css"/>
 
 @stack('backend-stylesheet')

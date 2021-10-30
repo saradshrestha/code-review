@@ -10,15 +10,15 @@ use Illuminate\Http\Request;
 class CartController extends Controller
 {
     public $response;
-    public $task;
+    public $cart;
 
-    public function __construct(ResponseService $response, CartInterface $task ){
+    public function __construct(ResponseService $response, CartInterface $cart ){
         $this->response = $response;
-        $this->task = $task;
+        $this->cart = $cart;
     }
     public function index(){
         try{
-            return $this->task->index();
+            return $this->cart->index();
         }catch (\Exception $e){
               $this->response->responseBladeError($e->getMessage());
         }
@@ -27,7 +27,7 @@ class CartController extends Controller
 
     public function getAllCart(){
         try{
-            return $this->task->getAllCart();
+            return $this->cart->getAllCart();
         }catch (\Exception $e){
               $this->response->responseBladeError($e->getMessage());
         }
@@ -35,7 +35,7 @@ class CartController extends Controller
 
     public function getCart(){
         try {
-            return $this->task->getCart();
+            return $this->cart->getCart();
         }catch (\Exception $e){
               $this->response->responseBladeError($e->getMessage());
         }
@@ -43,7 +43,7 @@ class CartController extends Controller
 
     public function store(Request $request){
         try {
-            return $this->task->store($request);
+            return $this->cart->store($request);
         }catch (\Exception $e){
               $this->response->responseBladeError($e->getMessage());
         }
@@ -51,7 +51,7 @@ class CartController extends Controller
 
     public function update(Request $request){
         try {
-            return $this->task->update($request);
+            return $this->cart->update($request);
         }catch (\Exception $e){
               $this->response->responseBladeError($e->getMessage());
         }
@@ -59,7 +59,7 @@ class CartController extends Controller
 
     public function destroy(Request $request){
         try{
-            return $this->task->destroy($request);
+            return $this->cart->destroy($request);
        }catch (\Exception $e){
               $this->response->responseBladeError($e->getMessage());
         }

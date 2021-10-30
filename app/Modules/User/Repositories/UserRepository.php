@@ -49,7 +49,6 @@ class UserRepository implements UserInterface
     }
 
     public function update($request, $id){
-        // dd( $request->all());
         $user = User::where('id',$id)->first();
         $user->name = $request->get('name');
         $user->email = $request->get('email');
@@ -88,7 +87,6 @@ class UserRepository implements UserInterface
             ->where('id',$id)
             ->forceDelete();
         return true;
-        // return redirect()->route('backend.users.trash');
     }
 
     public function statusUpdate($request, $id){
@@ -119,5 +117,4 @@ class UserRepository implements UserInterface
         $user->save();
         return true;
     }
-
 }

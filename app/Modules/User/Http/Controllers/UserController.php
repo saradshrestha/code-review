@@ -13,15 +13,15 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     public $response;
-    public $userInterface;
+    public $user;
 
-    public function __construct(ResponseService $response, UserInterface  $userInterface ){
+    public function __construct(ResponseService $response, UserInterface  $user ){
         $this->response = $response;
-        $this->userInterface = $userInterface;
+        $this->user = $user;
     }
     public function index(){
         try{
-            return $this->userInterface->index();
+            return $this->user->index();
         }catch (\Exception $e){
             return $this->response->responseBladeError($e->getMessage());
         }
@@ -29,7 +29,7 @@ class UserController extends Controller
 
     public function getUsers(){
         try{
-            return $this->userInterface->getUsers();
+            return $this->user->getUsers();
         }catch (\Exception $e){
             return $this->response->responseBladeError($e->getMessage());
         }
@@ -38,7 +38,7 @@ class UserController extends Controller
 
     public function create(){
         try {
-            return $this->userInterface->create();
+            return $this->user->create();
         }catch (\Exception $e){
             return $this->response->responseBladeError($e->getMessage());
         }
@@ -46,7 +46,7 @@ class UserController extends Controller
 
     public function store(UserStoreRequest $request){
         try {
-             $userStore = $this->userInterface->store($request);
+             $userStore = $this->user->store($request);
              if ($userStore === true){
                 return  $this->response->responseSuccessMsg('User Added Successfully.');
              }
@@ -58,7 +58,7 @@ class UserController extends Controller
 
     public function edit($id){
         try{
-            return $this->userInterface->edit($id);
+            return $this->user->edit($id);
         }catch (\Exception $e){
             return $this->response->responseBladeError($e->getMessage());
         }
@@ -66,7 +66,7 @@ class UserController extends Controller
 
     public function update(UserUpdateRequest $request, $id){
         try {
-             $userUpdate = $this->userInterface->update($request, $id);
+             $userUpdate = $this->user->update($request, $id);
              {
                 if($userUpdate){
                     return $this->response->responseSuccessMsg('User Data Updated.');
@@ -80,7 +80,7 @@ class UserController extends Controller
 
     public function destroy($id){
         try{
-            $userDelete = $this->userInterface->destroy($id);
+            $userDelete = $this->user->destroy($id);
             if( $userDelete == true){
                 return $this->response->responseSuccessMsg('User Account Deleted.');
             }
@@ -92,7 +92,7 @@ class UserController extends Controller
 
     public function undoDelete($id){
         try {
-            $restore = $this->userInterface->undoDelete($id);
+            $restore = $this->user->undoDelete($id);
             if  ($restore == true){
                 return  $this->response->responseSuccessMsg('User Account Restored.');
             }
@@ -104,7 +104,7 @@ class UserController extends Controller
 
     public function trashUser(){
         try {
-            return $this->userInterface->trashUser();
+            return $this->user->trashUser();
         }catch (\Exception $e){
             return $this->response->responseBladeError($e->getMessage());
         }
@@ -112,7 +112,7 @@ class UserController extends Controller
 
     public function getTrashUsers(){
         try {
-            return $this->userInterface->getTrashUsers();
+            return $this->user->getTrashUsers();
         }catch (\Exception $e){
             return $this->response->responseBladeError($e->getMessage());
         }
@@ -120,7 +120,7 @@ class UserController extends Controller
 
     public function permanentDelete($id){
         try {
-             $permaDelete = $this->userInterface->permanentDelete($id);
+             $permaDelete = $this->user->permanentDelete($id);
             if  ($permaDelete == true){
                 return  $this->response->responseSuccessMsg('User Account Deleted Permanently.');
             }
@@ -132,7 +132,7 @@ class UserController extends Controller
 
     public function statusUpdate(Request $request,$id){
         try {
-            return $this->userInterface->statusUpdate($request,$id);
+            return $this->user->statusUpdate($request,$id);
         }catch (\Exception $e){
             return $this->response->responseBladeError($e->getMessage());
         }
@@ -140,7 +140,7 @@ class UserController extends Controller
 
     public function changePassword($id){
         try {
-            return $this->userInterface->changePassword($id);
+            return $this->user->changePassword($id);
         }catch (\Exception $e){
             return $this->response->responseBladeError($e->getMessage());
         }
@@ -149,7 +149,7 @@ class UserController extends Controller
 
     public function passwordSubmit(PasswordChangeRequest $request,$id){
         try {
-            $changePw = $this->userInterface->passwordSubmit($request, $id);
+            $changePw = $this->user->passwordSubmit($request, $id);
             if ($changePw == true){
                 return $this->response->responseSuccessMsg("Password Changed Successfully");
             }

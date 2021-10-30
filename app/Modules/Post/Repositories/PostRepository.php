@@ -12,21 +12,19 @@ use Illuminate\Support\Carbon;
 
 class PostRepository implements PostInterface
 {
-    public $imageInterface ,$response;
+    public $image ,$response;
 
-    public function __construct(ImageInterface $imageInterface, ResponseService $responseService )
-    {
-         $this->imageInterface = $imageInterface;
-          $this->response =  $responseService;
+    public function __construct(ImageInterface $image){
+         $this->image = $image;
     }
     public function index(){
-        return view('Post::backend.posts.index',compact('posts'));
+        return view('Post::backend.post.index',compact('posts'));
     }
 
     public function getPosts()
     {
         $posts = Post::latest()->get();
-        $view = view('Post::backend.posts.getPosts',compact('posts'))->render();
+        $view = view('Post::backend.post.getPosts',compact('posts'))->render();
         return response()->json([
             'view' => $view
         ]);
@@ -34,15 +32,14 @@ class PostRepository implements PostInterface
 
     public function show($id){
         $post = Post::with('postImages')->where('id',$id)->first();
-        return view('Post::backend.posts.show',compact('post'));
+        return view('Post::backend.post.show',compact('post'));
     }
 
     public function create(){
-        return view('Post::backend.posts.create');
+        return view('Post::backend.post.create');
     }
 
     public function store($request){
-        //dd ($request->imageNames);
         $post= new Post();
         $post->post_title = ucwords($request->get('post_title'));
         $post->post_slug = Str::slug($request->get('post_title'));
@@ -57,12 +54,10 @@ class PostRepository implements PostInterface
 
     public function edit($id){
         $post = Post::with('postImages')->where('id',$id)->first();
-        return view('Post::backend.posts.edit',compact('post'));
+        return view('Post::backend.post.edit',compact('post'));
     }
 
     public function update($request, $id){
-        // dd( $request->all());
-        // dd($id);
         $post=Post::where('id', $id)->first();
         $post->post_title = ucwords($request->get('post_title'));
         $post->post_slug = Str::slug($request->get('post_title'));
@@ -97,20 +92,15 @@ class PostRepository implements PostInterface
         return true;
     }
 
-    public function trashPost(){
-        // return view('Post::backend.posts.trash');
-    }
-
     public function getTrashPosts(){
         $trashPosts = Post::onlyTrashed()->get();
-         $view = view('Post::backend.posts.getTrashPosts',compact('trashPosts'))->render();
+         $view = view('Post::backend.post.getTrashPosts',compact('trashPosts'))->render();
          return response ()->json([
             'view' =>  $view
          ]);
     }
 
     public function permanentDelete($id){
-        //$this->imageInterface->imagesDelete($id);
         Post::onlyTrashed()
             ->where('id',$id)
             ->forceDelete();
@@ -120,10 +110,8 @@ class PostRepository implements PostInterface
     public function statusUpdate($request, $id){
         $post = Post::where('id',$id)->first();
         $post->post_status = $request->post_status;
-        // dd  ( $request->post_status);
         $post->save();
         $success = true;
-
         if($post->post_status === 1){
             $post_status_1 =  $post->post_status;
             $message = "The Post Is Active Now.";
@@ -134,7 +122,6 @@ class PostRepository implements PostInterface
         return response()->json([
             'success' => $success,
             'message' => $message,
-            'post_status_1' =>  $post_status_1,
         ]);
     }
     public function publishUpdate($request, $id){
@@ -154,14 +141,12 @@ class PostRepository implements PostInterface
     }
 
     public function filterByDate($request){
-        // dd( $request->all());
         $from =Carbon::parse ($request->start_date)->toDateTimeString();
         $to =  Carbon::parse ($request->end_date)->toDateTimeString();
-        // dd  ($start_date);
         $posts = Post::whereDate('created_at','<=', $to)
                     ->whereDate('created_at','>=', $from)
                     ->get();
-        $view = view('Post::backend.posts.postFilterDate',compact('posts'))->render();
+        $view = view('Post::backend.post.postFilterDate',compact('posts'))->render();
         return response()->json([
              'view' => $view
         ]);
