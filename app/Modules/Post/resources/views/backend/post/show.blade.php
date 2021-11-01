@@ -21,7 +21,6 @@
         </div>
         <div class="modal-footer justify-content-between">
             <p>Created By:{{ $post->user->name }}</p>
-            <button class="btn btn-warning" data-dismiss="modal">Discard</button>
         </div>
     </div>
 </div>

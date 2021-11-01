@@ -38,6 +38,7 @@ class ImageRepository implements ImageInterface
             $imageStore->imagePath = $imagePath;
             $imageStore->imageName = time().$originalImage->getClientOriginalName();
             $imageStore->save();
+            return true;
         }
     }
 

@@ -52,7 +52,7 @@ class PostController extends Controller
 
     public function store(PostStoreRequest $request){
         try {
-            $postStore =  $this->post->store($request);
+            $postStore = $this->post->store($request);
             if ($postStore === true){
                 return $this->response->responseSuccessMsg('Successfully Created');
             }

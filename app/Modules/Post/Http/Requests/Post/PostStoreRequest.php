@@ -28,7 +28,7 @@ class PostStoreRequest extends FormRequest
             'post_content' => 'required',
             'post_status' => 'required|integer',
             'is_published' => 'required|integer',
-            'imageNames' => 'required',
+
         ];
     }
 

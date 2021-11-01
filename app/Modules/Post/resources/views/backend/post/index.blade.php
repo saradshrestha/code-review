@@ -289,9 +289,8 @@
             contentType: false,
             processData: false,
             data: form,
-            beforeSend: function(response) {
-
-            },success: function(response) {
+            cache: false,
+            success: function(response) {
                 loadGetPosts();
                 $("#createPostModal").modal('hide');
                 const toast = swal.mixin({

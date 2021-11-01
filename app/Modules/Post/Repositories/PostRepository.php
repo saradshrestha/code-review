@@ -7,7 +7,6 @@ use Post\Models\Post;
 use Illuminate\Support\Str;
 use Image\Repositories\ImageInterface;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Carbon;
 
 class PostRepository implements PostInterface
@@ -46,9 +45,13 @@ class PostRepository implements PostInterface
         $post->post_status = $request->get('post_status');
         $post->is_published = $request->get('is_published');
         $post->post_content = $request->get('post_content');
-        $post->user_id = 1 ;
+        $post->user_id = 1;
         $post->save();
-        $this->imageInterface->imagesStore($request->imageNames, $post->id);
+        $image = $this->image->imagesStore($request->imageNames, $post->id);
+        if($image != true){
+            Post::where ('id',$post->id)->forceDelete();
+            return false;
+        }
         return true;
     }
 
@@ -66,7 +69,7 @@ class PostRepository implements PostInterface
         $post->post_content = $request->get('post_content');
         $post->user_id = 1;
         $post->save();
-        if( $request->has('imageNames')){
+        if($request->has('imageNames')){
             foreach($post->postImages as $postImage){
                 if(file_exists(Storage::path( 'public/'.$postImage->imagePath.$postImage->imageName)))
                 {
@@ -74,7 +77,7 @@ class PostRepository implements PostInterface
                 }
             }
             $post->postImages()->delete();
-            $this->imageInterface->imagesStore($request->imageNames, $id);
+            $this->image->imagesStore($request->imageNames, $id);
         }
         return true;
     }
